@@ -16,20 +16,52 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    int n;
+    printf("Enter a number (5 to 13): ");
+    scanf("%d", &n);
+    switch(n) {
+        case 5:
+            printf("seventy one");
+            break;
+        case 6:
+            printf("seventy two");
+            break;
+        case 7:
+            printf("seventy three");
+            break;
+        case 8:
+            printf("seventy four");
+            break;
+        case 9:
+            printf("seventy five");
+            break;
+        case 10:
+            printf("seventy six");
+            break;
+        case 11:
+            printf("seventy seven");
+            break;
+        case 12:
+            printf("seventy eight");
+            break;
+        case 13:
+            printf("seventy nine");
+            break;
+        default:
+            printf("Greater than 13 or invalid input");
+    }
 
-
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="435" height="129" alt="image" src="https://github.com/user-attachments/assets/113905ae-e3b5-4438-bcb1-7219e471f5b0" />
 
 Result:
 Thus, the program is verified successfully
@@ -46,21 +78,36 @@ Algorithm:
 6.	End
  
 Program:
+```
+#include <stdio.h>
+#include <string.h>
 
-//type your code here
+int main() {
+    char a[50];
+    int i, c, d;
+    printf("ENETER :");
+
+    scanf("%s", a);
+
+    for(d = 0; d <= 3; d++) {
+        c = 0;
+        for(i = 0; i < strlen(a); i++) {
+            if(a[i] == d + '0')
+                c++;
+        }
+        printf("%d ", c);
+    }
+
+    return 0;
+}
+```
 
 
 
 
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="457" height="93" alt="image" src="https://github.com/user-attachments/assets/bfe7f464-03a5-45a5-9ebc-5fa3124a8e7c" />
 
 Result:
 Thus, the program is verified successfully
@@ -84,19 +131,46 @@ Free the memory allocated for each string in s Free the memory allocated for s
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <string.h>
 
+void swap(char *a, char *b){
+    char t=*a; *a=*b; *b=t;
+}
+
+void sort(char s[]){
+    int i,j;
+    for(i=0;s[i];i++)
+        for(j=i+1;s[j];j++)
+            if(s[i]>s[j]) swap(&s[i],&s[j]);
+}
+
+void perm(char s[], int l, int r){
+    if(l==r) printf("%s\n",s);
+    else{
+        for(int i=l;i<=r;i++){
+            swap(&s[l],&s[i]);
+            perm(s,l+1,r);
+            swap(&s[l],&s[i]);
+        }
+    }
+}
+
+int main(){
+    char s[20];
+    scanf("%s",s);
+    sort(s);
+    perm(s,0,strlen(s)-1);
+}
+```
 
 
 
 Output:
 
 
-//paste your output here
-
-
-
-
+<img width="432" height="277" alt="image" src="https://github.com/user-attachments/assets/a4e2bb0b-0d24-46de-be42-6846d6a03199" />
 
 
 Result:
@@ -117,19 +191,35 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    int n, i, j, min, len;
 
+    scanf("%d", &n);
 
+    len = 2 * n - 1;
+
+    for(i = 0; i < len; i++) {
+        for(j = 0; j < len; j++) {
+            min = i < j ? i : j;
+            min = min < (len - i - 1) ? min : (len - i - 1);
+            min = min < (len - j - 1) ? min : (len - j - 1);
+
+            printf("%d ", n - min);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+```
 
 Output:
 
 
-//paste your output here
-
-
-
-
+<img width="478" height="192" alt="image" src="https://github.com/user-attachments/assets/155d191c-d666-4119-9607-c1dee1d31d54" />
 
 
 Result:
@@ -156,47 +246,32 @@ o	Call the square() function and display the result.
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+
+int square() {
+    int n;
+    scanf("%d", &n);
+    return n * n;
+}
+
+int main() {
+    int result;
+    result = square();
+    printf("%d", result);
+    return 0;
+}
+```
 
 
 
 
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="421" height="124" alt="image" src="https://github.com/user-attachments/assets/c2f6c890-7bea-4034-8cce-7842a2a51bf8" />
 
 Result:
 Thus, the program is verified successfully
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
