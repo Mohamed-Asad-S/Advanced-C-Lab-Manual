@@ -15,11 +15,55 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void display() {
+    struct Node *p = head;
+    while (p != NULL) {
+        printf("%d -> ", p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+}
+
+struct Node* createNode(int val) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = val;
+    newNode->next = NULL;
+    return newNode;
+}
+
+int main() {
+    head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+
+    display();
+
+    struct Node *current = head;
+    struct Node *nextNode;
+    while (current != NULL) {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="428" height="125" alt="image" src="https://github.com/user-attachments/assets/da43c3b3-832c-4d8e-87c9-cf376f5eb577" />
 
 
 Result:
@@ -40,11 +84,67 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+void push(int val) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = val;
+    newNode->next = head;
+    head = newNode;
+}
+
+void pop() {
+    if (head == NULL) {
+        printf("Stack is empty.\n");
+    } else {
+        struct Node *temp = head;
+        printf("Popped element: %d\n", temp->data);
+        head = head->next;
+        free(temp);
+    }
+}
+
+void display() {
+    struct Node *temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+
+    printf("Stack before pop: ");
+    display();
+
+    pop();
+    
+    printf("Stack after pop: ");
+    display();
+
+    while (head != NULL) {
+        pop();
+    }
+
+    return 0;
+}
+```
 Output:
 
-//paste your output here
+<img width="546" height="215" alt="image" src="https://github.com/user-attachments/assets/c70d4e45-f1f0-4a17-bf7b-c0049a10905e" />
 
 
 
@@ -64,11 +164,65 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void display() {
+    struct Node *temp = front;
+    if (front == NULL) {
+        printf("Queue is Empty\n");
+        return;
+    }
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+void enqueue(int val) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = val;
+    newNode->next = NULL;
+    if (rear == NULL) {
+        front = rear = newNode;
+        return;
+    }
+    rear->next = newNode;
+    rear = newNode;
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+
+    display();
+
+    struct Node *current = front;
+    struct Node *nextNode;
+    while (current != NULL) {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="485" height="130" alt="image" src="https://github.com/user-attachments/assets/5834a273-2d68-4939-9c35-869e4c87ad6c" />
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -90,11 +244,63 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void enqueue(int val) {
+    struct Node *p = (struct Node*)malloc(sizeof(struct Node));
+    
+    p->data = val;
+    p->next = NULL;
+
+    if (front == NULL) {
+        front = rear = p;
+    } else {
+        rear->next = p;
+        rear = p;
+    }
+}
+
+void display() {
+    struct Node *temp = front;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+
+    display();
+
+    struct Node *current = front;
+    struct Node *nextNode;
+    while (current != NULL) {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="424" height="120" alt="image" src="https://github.com/user-attachments/assets/ec431589-dce3-4568-a1bf-2dea9ec3f72c" />
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,12 +323,63 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+void peek() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    printf("Front element: %d\n", front->data);
+}
+
+void enqueue(int val) {
+    struct Node *p = (struct Node*)malloc(sizeof(struct Node));
+    p->data = val;
+    p->next = NULL;
+
+    if (front == NULL) {
+        front = rear = p;
+    } else {
+        rear->next = p;
+        rear = p;
+    }
+}
+
+int main() {
+    peek();
+
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+
+    peek();
+
+    struct Node *current = front;
+    struct Node *nextNode;
+    while (current != NULL) {
+        nextNode = current->next;
+        free(current);
+        current = nextNode;
+    }
+
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
-
+<img width="428" height="154" alt="image" src="https://github.com/user-attachments/assets/2ee5a334-b9ca-4913-b247-fe8539be9dc8" />
 
 
 Result:
